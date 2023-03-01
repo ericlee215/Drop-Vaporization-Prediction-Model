@@ -3,7 +3,7 @@ This Repository contains an analytical model to predict the amount of vapor gene
 ## Source Code
 There is one main function with several utility functions. Most function are written by the other, however, polyfitB.m and InterX.m are used from the MATLAB file exchange. Their respective URL's are given below.
 ### VaporGenFunc.m
-Main Function which will contain all commands to run subsequent functions. This is the only function that will ever need to be called.
+This is the primary function which will contain all commands to run utility functions. This is the only function that will need to be called.
 
 Inputs:
 - Weber number of impacting drop, "We"
