@@ -1,10 +1,11 @@
-function [lamhat, lamThat, Tmax, tmax, theta] = surface_props(surface,D0)
+function [lamhat, lamThat, Tmax, tmax, theta] = surface_props(drop,surface)
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
-% Inputs  initial diameter of the drop, "r0", in meters
-%         Matlab Struct, "surface", contains surface type 
-%                 ('post','rib',or 'smooth'),
-%                 surface pitch in microns, surface solid fraction, and 
-%                 surface height in microns
+% Inputs  Matlab Struct "drop" contains:
+%                 Drop initial radius, "r0", in meters
+%         Matlab Struct, "surface", contains:
+%                 surface type ('post','rib',or 'smooth'),
+%                 surface pitch, "pitch", in microns
+%                 surface solid fraction, "Fs"
 % 
 % Returns Nondimensional slip length, "lamhat"
 %         Nondimensional temperature jump length, "lamThat"
@@ -14,6 +15,7 @@ function [lamhat, lamThat, Tmax, tmax, theta] = surface_props(surface,D0)
 %         Static contact angle, "theta", in radians 
 %-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%-%
 
+D0 = 2*drop.r0;
 w = surface.pitch;
 Fs = surface.fs;
 Fc = 1-Fs;
@@ -53,7 +55,7 @@ else
     Tmax = (contactTmax*(eWall+eFluid)-eFluid*25)/eWall;
     %tmax = 2.66 + 1/(0.5932+exp(-lamT+3.672)^2.919);
     tmax = 0.5227 + 1/(3.023+exp(-lamT+4.259)^2.799);
-    tmax = tmax*1e-3;
+    %tmax = tmax*1e-3;
     theta = 150*pi/180;
 end
 
